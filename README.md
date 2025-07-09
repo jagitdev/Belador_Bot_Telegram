@@ -5,58 +5,55 @@
  | |_) | |____| |____ / ____ \| |__| | |__| | | \ \ 
  |____/|______|______/_/    \_\_____/ \____/|_|  \_\
  
-# Proyecto CLI en Rust 🦀
+# CLI Project in Rust 🦀
 
-Este repositorio contiene un proyecto CLI (interfaz de línea de comandos) desarrollado en Rust, con el objetivo principal de aprender y experimentar con el lenguaje.
+This repository contains a CLI (Command Line Interface) project developed in Rust, with the main goal of learning and experimenting with the language.
 
-🔧 **Proyecto en constante desarrollo y evolución**.
-
----
-
-## ⚠️ Advertencia
-
-Este código es parte de mi proceso de aprendizaje.  
-Es posible que haya partes mejorables, no optimizadas o incluso con errores.  
-
-
-> **belador** es un gestor de tareas (TODO CLI) escrito en Rust, diseñado para usuarios que buscan productividad de verdad en la terminal. No es solo un “add/list/delete”, sino un sistema completo para organizar, buscar, filtrar y sincronizar tus tareas, con funcionalidades avanzadas y opciones de personalización.
+🔧 **Project under constant development and evolution.**
 
 ---
 
-## Características principales
+## ⚠️ Warning
 
-### 1. Estructura básica ❌
-- Crear, listar, editar y eliminar tareas fácilmente desde la terminal.
-- Guardado local flexible: soporta archivos JSON y binarios personalizados.
+This code is part of my learning process.  
+There may be areas for improvement, non-optimized parts, or even some bugs.  
 
-### 2. Mejoras intermedias ❌
-- **Categorías y etiquetas:** clasifica tus tareas por área, proyecto o urgencia.
-- **Prioridades:** marca cada tarea como Alta, Media o Baja prioridad.
-- **Fechas límite:** añade fechas de vencimiento y filtra por vencimiento.
-- **Subtareas:** crea tareas hijas dentro de tareas principales (estructura tipo árbol).
+> **belador** is a task manager (TODO CLI) written in Rust, designed for users who want true productivity in the terminal. It’s not just an “add/list/delete” app, but a complete system to organize, search, filter, and sync your tasks, with advanced features and customization options.
 
-### 3. Experiencia de usuario ❌
-- CLI potente con comandos y flags intuitivos:  
+---
+
+## Main Features
+
+### 1. Basic Structure ❌
+- Easily create, list, edit, and delete tasks from the terminal.
+- Flexible local storage: supports both JSON files and custom binary formats.
+
+### 2. Intermediate Improvements ❌
+- **Categories and tags:** classify your tasks by area, project, or urgency.
+- **Priorities:** set each task as High, Medium, or Low priority.
+- **Due dates:** add deadlines and filter by expiration.
+- **Subtasks:** create child tasks within main tasks (tree-like structure).
+
+### 3. User Experience ❌
+- Powerful CLI with intuitive commands and flags:  
   `belador add`, `belador list --today`, `belador edit --id 4`, etc.
-- Búsqueda avanzada por texto, etiquetas o estado usando fuzzy search.
+- Advanced search by text, tags, or status using fuzzy search.
 
-### 4. Funcionalidades avanzadas ❌
-- **Historial y undo:** deshace cambios recientes y recupera acciones previas.
-- **Estadísticas:** visualiza el progreso y pendientes por categoría o prioridad.
-- **Exportar/Importar:** trabaja con tus tareas en formato JSON, CSV o Markdown.
-- **Sincronización:** sube o descarga tareas de un servidor o nube (API simple incluida).
-- **Notificaciones:** recibe alertas en consola o por correo para tareas próximas a vencer.
+### 4. Advanced Features ❌
+- **History and undo:** revert recent changes and recover previous actions.
+- **Statistics:** view your progress and pending tasks by category or priority.
+- **Export/Import:** work with your tasks in JSON, CSV, or Markdown format.
+- **Sync:** upload or download tasks from a server or cloud (simple API included).
+- **Notifications:** get alerts in the console or via email for upcoming tasks.
 
-### 5. Bonus: nivel profesional ❌
-- **Multiusuario:** cada usuario tiene su propio perfil y configuración.
-- **Colaboración:** asigna tareas a diferentes usuarios o comparte listas.
-- **Plugins/extensiones:** añade comandos personalizados fácilmente.
-- **Integraciones:** conecta con Google Calendar, Trello, Notion y más.
-- **Gráficas ASCII:** visualiza tu productividad directamente en la terminal.
+### 5. Bonus: Pro Level ❌
+- **Multi-user:** each user has their own profile and configuration.
+- **Collaboration:** assign tasks to different users or share lists.
+- **Plugins/extensions:** easily add custom commands.
+- **Integrations:** connect with Google Calendar, Trello, Notion, and more.
+- **ASCII charts:** visualize your productivity directly in the terminal.
 
----Mas ideas proximamente---
-
-
-MIT License
+---More ideas coming soon---
+ MIT License
 
 
