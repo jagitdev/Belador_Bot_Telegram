@@ -54,6 +54,6 @@ There may be areas for improvement, non-optimized parts, or even some bugs.
 
 ---More ideas coming soon---
 
- #MIT License
+MIT License
 
 
