@@ -50,7 +50,6 @@ There may be areas for improvement, non-optimized parts, or even some bugs.
 - **Multi-user:** each user has their own profile and configuration.
 - **Collaboration:** assign tasks to different users or share lists.
 - **Plugins/extensions:** easily add custom commands.
-- **Integrations:** connect with Google Calendar, Trello, Notion, and more.
 - **ASCII charts:** visualize your productivity directly in the terminal.
 
 ---More ideas coming soon---
