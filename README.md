@@ -53,6 +53,7 @@ There may be areas for improvement, non-optimized parts, or even some bugs.
 - **ASCII charts:** visualize your productivity directly in the terminal.
 
 ---More ideas coming soon---
+
  #MIT License
 
 
