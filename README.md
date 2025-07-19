@@ -12,7 +12,7 @@ This repository contains a CLI (Command Line Interface) project developed in Rus
 
 🔧 **Project under constant development and evolution.**
 
-🛠️Currently a CLI-based To-Do app, with plans to become either a Telegram bot or a mini app in the future.
+
 
 ---
 
