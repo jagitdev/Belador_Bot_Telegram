@@ -14,6 +14,8 @@ This repository contains a CLI (Command Line Interface) project developed in Rus
 
 ---
 
+---
+
 ## 🤖 About the Future
 
 While currently a terminal-based To-Do app, the goal is to transform it into a **Telegram bot** or even a **Telegram Mini App**.  
