@@ -12,7 +12,6 @@ This repository contains a CLI (Command Line Interface) project developed in Rus
 
 🔧 **Project under constant development and evolution.**
 
-
 ---
 
 ## 🤖 About the Future
