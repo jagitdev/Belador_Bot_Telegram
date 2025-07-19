@@ -1,18 +1,8 @@
----
+# belador - CLI Project in Rust 🦀
 
-| _ \| \_**\_| | /\ | ** \ / ** \| ** \
-| |_) | |** | | / \ | | | | | | | |**) |
-| _ <| \_\_| | | / /\ \ | | | | | | | _ /
-| |_) | |\_**\_| |\_\_** / \_**\_ \| |**| | |**| | | \ \
-|\_\_**/|**\_\_**|**\_\_**/_/ \_\_\_**\_/ \_\_**/|\_| \_\
-
-# CLI Project in Rust 🦀
-
-This repository contains a CLI (Command Line Interface) project developed in Rust, with the main goal of learning and experimenting with the language.
+This repository contains a **CLI (Command Line Interface)** project developed in Rust, with the main goal of learning and experimenting with the language.
 
 🔧 **Project under constant development and evolution.**
-
----
 
 ---
 
@@ -20,8 +10,6 @@ This repository contains a CLI (Command Line Interface) project developed in Rus
 
 While currently a terminal-based To-Do app, the goal is to transform it into a **Telegram bot** or even a **Telegram Mini App**.  
 This will allow users to manage tasks directly from Telegram, making the experience more accessible, interactive, and platform-independent.
-
----
 
 ---
 
@@ -69,6 +57,8 @@ There may be areas for improvement, non-optimized parts, or even some bugs.
 - **Plugins/extensions:** easily add custom commands.
 - **ASCII charts:** visualize your productivity directly in the terminal.
 
----More ideas coming soon---
+---
 
-MIT License
+## License
+
+This project is licensed under the **MIT License**.
