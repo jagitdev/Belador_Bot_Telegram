@@ -11,7 +11,7 @@ pub struct Command {
 impl Command {
     pub fn new<C, A>(command: C, args: A) -> Self
     where
-        C: Into<String>,
+        C: Into<String>, //Into para que en firmas de funciones acepten "Cualquier cosa" que se convierta al tipo objetivo
         A: Into<Vec<String>>,
     {
         Command {

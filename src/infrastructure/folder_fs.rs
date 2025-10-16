@@ -1,4 +1,4 @@
-use crate::domain::task::Task;
+use serde::Serialize;
 
 pub struct FileManager {
     pub base_path: String,
@@ -19,10 +19,12 @@ impl FileManager {
         self.base_path = new_path;
     }
 
-    pub fn write_to_file(content: Task) {
-        serde_json::to_string_pretty(&content)
-            .map_err(|e| e.to_string())
-            .and_then(|json_content| std::fs::write(Self, json_content).map_err(|e| e.to_string()))
-            .expect("Failed to write task to file");
+    pub fn write_to_file<T: Serialize>(&self, content: T) -> Result<(), String> {
+        let json_content = serde_json::to_string_pretty(&content).map_err(|e| e.to_string())?;
+
+        let file_path = format!("{}", self.base_path);
+        std::fs::write(file_path, json_content).map_err(|e| e.to_string())?;
+
+        Ok(())
     }
 }

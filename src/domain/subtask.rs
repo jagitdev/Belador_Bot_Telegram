@@ -1,4 +1,5 @@
-struct sub_tasks {
+#[derive(serde::Serialize, serde::Deserialize)]
+struct SubTasks {
     title: String,       //titulo de la tarea
     description: String, //descripción de la tarea
     hours_create: u32,   //horas de creación

@@ -1,5 +1,6 @@
 mod application;
 mod domain;
+mod infrastructure;
 use crate::domain::command::Command;
 
 //cargo run -- -command --arg1 --arg2
