@@ -21,7 +21,7 @@ fn main() {
 
     let command = Command::new(mode.clone(), rest.to_vec()); //-command
 
-    println!("Command: {:?}", command);
+    //println!("Command: {:?}", command);
 
     command.resolve().run();
 }
