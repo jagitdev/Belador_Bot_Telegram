@@ -1,15 +1,16 @@
+use crate::domain::subtask::SubTask;
 use chrono::{DateTime, Local};
 use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 pub struct Task {
-    title: String,                  //titulo de la tarea
-    description: String,            //descripción de la tarea
-    hours_create: String,           //horas de creación
-    date_create: String,            //fecha de creación
-    category: String,               //categoría de la tarea
-    date_limit: String,             //fecha límite de la tarea
-    progress: String,               //progreso de la tarea
-    sub_tasks: Option<Vec<String>>, //subtareas de la tarea
+    title: String,                   //titulo de la tarea
+    description: String,             //descripción de la tarea
+    hours_create: String,            //horas de creación
+    date_create: String,             //fecha de creación
+    category: String,                //categoría de la tarea
+    date_limit: String,              //fecha límite de la tarea
+    progress: String,                //progreso de la tarea
+    sub_tasks: Option<Vec<SubTask>>, //subtareas de la tarea
 }
 
 impl Task {
@@ -21,7 +22,7 @@ impl Task {
         category: &str,
         date_limit: &str,
         progress: &str,
-        sub_tasks: Option<Vec<&str>>,
+        sub_tasks: Option<Vec<SubTask>>,
     ) -> Self {
         Task {
             title: title.to_string(),
@@ -31,7 +32,7 @@ impl Task {
             category: category.to_string(),
             date_limit: date_limit.to_string(),
             progress: progress.to_string(),
-            sub_tasks: sub_tasks.map(|subs| subs.into_iter().map(|s| s.to_string()).collect()),
+            sub_tasks: sub_tasks,
         }
     }
 }

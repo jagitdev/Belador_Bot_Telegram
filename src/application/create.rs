@@ -1,10 +1,10 @@
-use crossterm::execute;
-use crossterm::terminal::{Clear, ClearType};
-
+use crate::domain::subtask::SubTask;
 use crate::domain::task::Task;
 use crate::infrastructure::folder_fs::FileManager;
 use chrono::Local;
-use std::io::{stdout, Read, Write};
+use crossterm::execute;
+use crossterm::terminal::{Clear, ClearType};
+use std::io::{stdout, Write};
 use std::path::Path;
 
 #[derive(Debug, Clone)]
@@ -47,11 +47,7 @@ impl Create {
         let progress = Self::read_progress();
 
         //subtareas
-        println!("Subtareas de la tarea(subt1,subt2,subt3): ");
-        stdout().flush().unwrap();
-        let mut sub_tasks_string = String::new();
-        std::io::stdin().read_line(&mut sub_tasks_string).unwrap();
-        let sub_tasks: Vec<&str> = sub_tasks_string.split(",").collect();
+        Self::read_subtask();
 
         let task = Task::new(
             &title,
@@ -93,6 +89,27 @@ impl Create {
                 }
                 _ => println!("Progreso debe estar entre 0 y 100"),
             }
+        }
+    }
+
+    fn read_subtask() -> Vec<SubTask> {
+        //preguntar hasta que sea un signo de no hay mas tareas
+        println!("--Subtareas--");
+        let mut count = 1;
+        loop {
+            println!("{count}º Subtarea (añade un + si quieres añadir subtareas y añade un ! para no añadir mas subtareas)",);
+            stdout().flush().unwrap();
+            let mut value = String::new();
+            std::io::stdin().read_line(&mut value).unwrap();
+
+            let value_option = value;
+            if value_option == "+" { //si es + el valor es añadir una subtarea mas
+            } else if value_option == "!" { //si es ! el valor no añadir mas subtareas
+            }
+
+            println!("");
+
+            count += 1;
         }
     }
 

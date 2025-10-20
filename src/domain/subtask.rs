@@ -1,11 +1,14 @@
 #[derive(serde::Serialize, serde::Deserialize)]
-struct SubTasks {
+pub struct SubTask {
     title: String,       //titulo de la tarea
     description: String, //descripción de la tarea
-    hours_create: u32,   //horas de creación
-    date_create: String, //fecha de creación
-    category: String,    //categoría de la tarea
-    tags: Vec<String>,   //etiquetas de la tarea
-    date_limit: String,  //fecha límite de la tarea
-    progress: u32,       //progreso de la tarea
+}
+
+impl SubTask {
+    pub fn new(title: &str, description: &str) -> Self {
+        SubTask {
+            title: title.to_string(),
+            description: description.to_string(),
+        }
+    }
 }
