@@ -47,7 +47,7 @@ impl Create {
         let progress = Self::read_progress();
 
         //subtareas
-        Self::read_subtask();
+        let sub_tasks = Self::read_subtask();
 
         let task = Task::new(
             &title,
@@ -57,7 +57,7 @@ impl Create {
             &category,
             &date_limit,
             &progress,
-            Some(sub_tasks),
+            sub_tasks,
         );
 
         match file_manager.write_to_file(task) {
@@ -92,22 +92,61 @@ impl Create {
         }
     }
 
-    fn read_subtask() -> Vec<SubTask> {
+    fn read_subtask() -> Option<Vec<SubTask>> {
         //preguntar hasta que sea un signo de no hay mas tareas
+
+        /*
+
+        --subtareas--
+        1º Subtarea (añade un + si quieres añadir subtareas y añade un ! para no añadir mas subtareas
+        +
+        Titulo de la subtarea:
+        ..
+        Descripcion de la subtarea:
+        ..
+         */
         println!("--Subtareas--");
         let mut count = 1;
+
+        let mut vec_subtask: Vec<SubTask> = Vec::new();
+
         loop {
-            println!("{count}º Subtarea (añade un + si quieres añadir subtareas y añade un ! para no añadir mas subtareas)",);
+            println!("Subtarea Añade un + si quieres añadir subtareas y añade un ! para no añadir mas subtareas");
             stdout().flush().unwrap();
             let mut value = String::new();
             std::io::stdin().read_line(&mut value).unwrap();
+            let value_option = value.trim();
 
-            let value_option = value;
-            if value_option == "+" { //si es + el valor es añadir una subtarea mas
-            } else if value_option == "!" { //si es ! el valor no añadir mas subtareas
+            if value_option == "+" {
+                //si es + el valor es añadir una subtarea mas
+                println!("{count}º Subtarea");
+
+                //titulo subtarea
+                println!("Titulo de la subtarea: ");
+                stdout().flush().unwrap();
+                let mut titulo = String::new();
+                std::io::stdin().read_line(&mut titulo).unwrap();
+                titulo = titulo.trim().to_string();
+
+                //descripcion de la subtarea
+                println!("Descripcion de la subtarea: ");
+                stdout().flush().unwrap();
+                let mut descripcion = String::new();
+                std::io::stdin().read_line(&mut descripcion).unwrap();
+                descripcion = descripcion.trim().to_string();
+
+                let subtask = SubTask::new(titulo, descripcion);
+
+                vec_subtask.push(subtask);
+            } else if value_option == "!" {
+                //si es ! el valor no añadir mas subtareas
+
+                if !vec_subtask.is_empty() {
+                    return Some(vec_subtask);
+                } else {
+                    return None;
+                }
             }
-
-            println!("");
 
             count += 1;
         }

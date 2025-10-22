@@ -1,13 +1,34 @@
 {
-  "title": "titulo 1",
-  "description": "crear software",
-  "hours_create": "14:34",
-  "date_create": "19-10-2025",
+  "title": "tarea1",
+  "description": "hacer programa software",
+  "hours_create": "21:15",
+  "date_create": "21-10-2025",
   "category": "software",
   "date_limit": "11-11-2025",
   "progress": "0",
   "sub_tasks": [
-    "sub1",
-    "sub2\r\n"
+    {
+      "title": "subtarea1",
+      "description": "hacer logica"
+    },
+    {
+      "title": "subtarea2",
+      "description": "hacer api"
+    }
+  ]
+},
+{
+  "title": "tarea2",
+  "description": "hacer una portada",
+  "hours_create": "01:16",
+  "date_create": "22-10-2025",
+  "category": "diseño",
+  "date_limit": "11-11-2025",
+  "progress": "0",
+  "sub_tasks": [
+    {
+      "title": "crear la idea",
+      "description": "con el equipo debemos de saber cual es la idea"
+    }
   ]
 }

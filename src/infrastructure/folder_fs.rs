@@ -1,4 +1,6 @@
 use serde::Serialize;
+use std::fs::OpenOptions;
+use std::io::Write;
 
 pub struct FileManager {
     pub base_path: String,
@@ -23,7 +25,14 @@ impl FileManager {
         let json_content = serde_json::to_string_pretty(&content).map_err(|e| e.to_string())?;
 
         let file_path = format!("{}", self.base_path);
-        std::fs::write(file_path, json_content).map_err(|e| e.to_string())?;
+        let mut file = OpenOptions::new()
+            .create(true) // crea el archivo si no existe
+            .append(true) // añade al final
+            .open(file_path)
+            .map_err(|e| e.to_string())?;
+
+        // Escribe el JSON y un salto de línea para separarlo del anterior
+        writeln!(file, "{}", json_content).map_err(|e| e.to_string())?;
 
         Ok(())
     }
