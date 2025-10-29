@@ -1,12 +1,11 @@
 use crate::domain::subtask::SubTask;
 use crate::domain::task::Task;
-use crate::infrastructure::folder_fs::FileManager;
+use crate::infrastructure::connection_mongodb::{self, ConnectionMongodb};
 use chrono::Local;
 use crossterm::execute;
 use crossterm::terminal::{Clear, ClearType};
+use mongodb::sync::{Collection, Database};
 use std::io::{stdout, Write};
-use std::path::Path;
-
 #[derive(Debug, Clone)]
 pub struct Create {
     args: Vec<String>,
@@ -19,8 +18,19 @@ impl Create {
 
     pub fn run_create(self) {
         execute!(stdout(), Clear(ClearType::All)).unwrap(); //borrar terminal
-        let path = Path::new("src\\data\\data.json");
-        let file_manager = FileManager::new(path.to_string_lossy().to_string());
+
+        let connection_mongodb = ConnectionMongodb::new();
+
+        let client = match connection_mongodb.connection() {
+            Ok(c) => {
+                println!("mongodb conectado...");
+                c
+            }
+            Err(e) => {
+                eprintln!("mongodb error al conectar {e}");
+                return;
+            }
+        };
 
         //crear Task
         println!("Creando Tarea");
@@ -60,10 +70,13 @@ impl Create {
             sub_tasks,
         );
 
-        match file_manager.write_to_file(task) {
-            Ok(_) => println!("File written successfully!"),
-            Err(e) => eprintln!("Error writing to file: {:?}", e),
-        }
+        //escribir en mongodb
+        let my_coll: Collection<Task> = client.database("belador_db").collection("task");
+        let insert_one_result = my_coll.insert_one(task).run().unwrap();
+        println!(
+            "Inserted document with _id: {}",
+            insert_one_result.inserted_id
+        );
     }
 
     fn read_data(question: &str) -> String {
