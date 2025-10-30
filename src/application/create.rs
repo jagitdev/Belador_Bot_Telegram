@@ -19,6 +19,7 @@ impl Create {
     pub fn run_create(self) {
         execute!(stdout(), Clear(ClearType::All)).unwrap(); //borrar terminal
 
+        println!("AQUI");
         let connection_mongodb = ConnectionMongodb::new();
 
         let client = match connection_mongodb.connection() {

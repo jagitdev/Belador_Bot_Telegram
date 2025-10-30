@@ -2,9 +2,6 @@ use dotenvy::dotenv;
 use mongodb::{bson::doc, sync::Client};
 use std::env;
 
-const DEFAULT_MONGODB_HOST: &str = "cluster0.at4kkos.mongodb.net";
-const DEFAULT_MONGODB_APPNAME: &str = "Cluster0";
-
 pub struct ConnectionMongodb {
     link: String,
 }
@@ -20,8 +17,8 @@ impl ConnectionMongodb {
             env::var("MONGODB_PASSWORD").expect("MONGODB_PASSWORD no está definido en .env");
 
         let link = format!(
-            "mongodb+srv://{}:{}@{}/?appName={}",
-            username, password, DEFAULT_MONGODB_HOST, DEFAULT_MONGODB_APPNAME
+            "mongodb+srv://{}:{}@cluster0.at4kkos.mongodb.net/belador_db0?retryWrites=true&w=majority",
+            username,password
         );
 
         ConnectionMongodb { link }
