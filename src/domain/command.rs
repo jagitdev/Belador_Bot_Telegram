@@ -28,4 +28,8 @@ impl Command {
 
         resolved_command
     }
+
+    pub fn resolve_args
+
+
 }
