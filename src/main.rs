@@ -1,4 +1,5 @@
 mod application;
+mod commands;
 mod domain;
 mod infrastructure;
 use crate::domain::command::Command;

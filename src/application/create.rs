@@ -1,3 +1,4 @@
+use crate::commands::create::create_task::Args;
 use crate::domain::subtask::SubTask;
 use crate::domain::task::Task;
 use crate::infrastructure::connection_mongodb::{self, ConnectionMongodb};
@@ -16,10 +17,20 @@ impl Create {
         Create { args: args }
     }
 
+    pub fn resolve_args(self) -> Args {
+        let first_arg = self.args.first().map(|s| s.as_str());
+        match first_arg {
+            Some("--task") => Args::Task(self.args.clone()),
+            Some("--category") => Args::Category(self.args.clone()),
+            _ => Args::Unknown,
+        }
+    }
+
     pub fn run_create(self) {
         execute!(stdout(), Clear(ClearType::All)).unwrap(); //borrar terminal
 
         println!("AQUI");
+
         let connection_mongodb = ConnectionMongodb::new();
 
         let client = match connection_mongodb.connection() {
