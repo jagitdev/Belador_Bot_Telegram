@@ -9,7 +9,7 @@ pub enum ResolvedCommand {
 impl ResolvedCommand {
     pub fn run(self) {
         match self {
-            ResolvedCommand::Create(c) => c.run_create(),
+            ResolvedCommand::Create(c) => c.resolve_args(),
             ResolvedCommand::Unknown => {
                 eprintln!("Comando desconocido");
             }
