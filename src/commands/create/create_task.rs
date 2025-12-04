@@ -4,8 +4,11 @@ use crate::infrastructure::connection_mongodb::ConnectionMongodb;
 use chrono::Local;
 use crossterm::execute;
 use crossterm::terminal::{Clear, ClearType};
-use mongodb::sync::Collection;
+use mongodb::bson::oid::ObjectId;
+use mongodb::bson::{doc, Document};
+use mongodb::sync::{Client, Collection};
 use std::io::{stdout, Write};
+use std::process;
 
 pub fn create_task() {
     execute!(stdout(), Clear(ClearType::All)).unwrap(); //borrar terminal
@@ -39,7 +42,8 @@ pub fn create_task() {
     let date_create = Local::now().format("%d-%m-%Y").to_string();
 
     //categoria
-    let category = read_data("Categoria de la tarea: ");
+    //
+    let category = read_category(&client);
 
     //fecha limite
     let date_limit = read_date();
@@ -51,13 +55,13 @@ pub fn create_task() {
     let sub_tasks = read_subtask();
 
     let task = Task::new(
-        &title,
-        &description,
-        &hours_create,
-        &date_create,
-        &category,
-        &date_limit,
-        &progress,
+        title,
+        description,
+        hours_create,
+        date_create,
+        category,
+        date_limit,
+        progress,
         sub_tasks,
     );
 
@@ -180,4 +184,28 @@ fn read_date() -> String {
 
         println!("Formato incorrecto. Usa DD-MM-YYYY (ej: 15-01-2024)")
     }
+}
+
+fn read_category(client: &Client) -> ObjectId {
+    println!("Categoria de la tarea: ");
+    stdout().flush().unwrap();
+    let mut input = String::new();
+    std::io::stdin().read_line(&mut input).unwrap();
+    let input = input.trim().to_string();
+
+    //tenemos que buscar la categoria en la base de datos
+    let my_coll: Collection<Document> = client.database("belador_db").collection("category");
+    let find_result: Option<Document> = my_coll.find_one(doc! { "title": &input }).run().unwrap();
+
+    if let Some(doc) = find_result {
+        if let Ok(oid) = doc.get_object_id("_id") {
+            return oid.clone();
+        }
+    }
+
+    // Si no se encuentra la categoría, terminar el programa
+    eprintln!("❌ Categoría '{}' no encontrada.", input);
+    eprintln!("💡 Por favor, crea la categoría primero usando el comando:");
+    eprintln!("   -create --category");
+    process::exit(1);
 }

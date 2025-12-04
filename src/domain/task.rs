@@ -1,4 +1,5 @@
 use crate::domain::subtask::SubTask;
+use mongodb::bson::oid::ObjectId;
 use serde::ser::{Serialize, SerializeStruct, Serializer};
 
 pub struct Task {
@@ -6,7 +7,7 @@ pub struct Task {
     description: String,             //descripción de la tarea
     hours_create: String,            //horas de creación
     date_create: String,             //fecha de creación
-    category: String,                //categoría de la tarea
+    category: ObjectId,              //categoría de la tarea
     date_limit: String,              //fecha límite de la tarea
     progress: String,                //progreso de la tarea
     sub_tasks: Option<Vec<SubTask>>, //subtareas de la tarea
@@ -14,24 +15,24 @@ pub struct Task {
 
 impl Task {
     pub fn new(
-        title: &str,
-        description: &str,
-        hours_create: &str,
-        date_create: &str,
-        category: &str,
-        date_limit: &str,
-        progress: &str,
+        title: String,
+        description: String,
+        hours_create: String,
+        date_create: String,
+        category: ObjectId,
+        date_limit: String,
+        progress: String,
         sub_tasks: Option<Vec<SubTask>>,
     ) -> Self {
         Task {
-            title: title.to_string(),
-            description: description.to_string(),
-            hours_create: hours_create.to_string(),
-            date_create: date_create.to_string(),
-            category: category.to_string(),
-            date_limit: date_limit.to_string(),
-            progress: progress.to_string(),
-            sub_tasks: sub_tasks,
+            title,
+            description,
+            hours_create,
+            date_create,
+            category,
+            date_limit,
+            progress,
+            sub_tasks,
         }
     }
 }
