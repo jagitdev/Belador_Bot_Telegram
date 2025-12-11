@@ -1,5 +1,5 @@
 use crate::application::create::Create;
-
+use crate::application::delete::Delete;
 use crate::domain::resolved_command::ResolvedCommand;
 
 #[derive(Debug)]
@@ -15,14 +15,15 @@ impl Command {
         A: Into<Vec<String>>,
     {
         Command {
-            command: command.into(),
-            args: args.into(), // <-- usar los args pasados
+            command: command.into(), //into() para que se convierta al tipo objetivo
+            args: args.into(),       // <-- usar los args pasados
         }
     }
 
     pub fn resolve(self) -> ResolvedCommand {
         let resolved_command = match self.command.as_str() {
             "-create" => ResolvedCommand::Create(Create::new(self.args)),
+            "-delete" => ResolvedCommand::Delete(Delete::new(self.args)),
             _ => ResolvedCommand::Unknown,
         };
 
